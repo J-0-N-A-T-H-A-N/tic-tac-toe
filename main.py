@@ -20,12 +20,15 @@ def player_move(board, player):
         refresh_board(board)
     else:
         print("Cell already taken")
+    return board
 
-
-def check_win(player):
+def check_win(player, board):
     # Check win logic needs to go in here
-    print(f"\nGame over! Player {player} wins!")
-    return True
+    if not board[1][1].isnumeric():                     # Temporarily win when hit middle cell
+        print(f"\nGame over! Player {player} wins!")
+        return True
+    else:
+        return False
 
 
 def main():
@@ -34,8 +37,8 @@ def main():
     game_on = True
     current_player = 1
     while game_on:
-        player_move(current_board, current_player)
-        if check_win(current_player):
+        current_board = player_move(current_board, current_player)
+        if check_win(current_player, current_board):
             game_on = False
         if current_player == 1:
             current_player = 2
