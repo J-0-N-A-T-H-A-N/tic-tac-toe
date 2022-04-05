@@ -24,12 +24,32 @@ def player_move(board, player):
 
 def check_win(player, board):
     # Check win logic needs to go in here
-    if not board[1][1].isnumeric():                     # Temporarily win when hit middle cell
-        print(f"\nGame over! Player {player} wins!")
-        return True
-    else:
-        return False
+    winning_combos = [
+        [(0, 0), (0, 1), (0, 2)],
+        [(1, 0), (1, 1), (1, 2)],
+        [(2, 0), (2, 1), (2, 2)],
+        [(0, 0), (1, 0), (2, 0)],
+        [(0, 1), (1, 1), (2, 1)],
+        [(0, 2), (1, 2), (2, 2)],
+        [(0, 0), (1, 1), (2, 2)],
+        [(0, 2), (1, 1), (2, 0)],
+    ]
+    for winner in winning_combos:
+        x_count = 0
+        o_count = 0
+        for square in winner:
+            x = square[0]
+            y = square[1]
+            if board[x][y] == "X":
+                x_count += 1
+            elif board[x][y] == "O":
+                o_count += 1
 
+        if x_count == 3 or o_count == 3:
+            print(f"\n Player {player} Wins!")
+            return True
+
+    return False
 
 def main():
     current_board = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
