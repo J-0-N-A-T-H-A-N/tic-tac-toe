@@ -1,6 +1,7 @@
 import os
 
 def refresh_board(board):
+    # Draws the board initially and redraws after move is made
     os.system('cls' if os.name == 'nt' else 'clear')
     for row in range(3):
         for cell in range(3):
@@ -12,6 +13,7 @@ def refresh_board(board):
 
 
 def player_move(board, player):
+    # Updates board with players move
     player_pieces = {1: "X", 2: "O"}
     move = int(input(f"\n\nPlayer {player} ({player_pieces[player]}), select square: "))
     column = (move - 1) // 3
