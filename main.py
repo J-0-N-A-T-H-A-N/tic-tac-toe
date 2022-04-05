@@ -1,6 +1,7 @@
-
+import os
 
 def refresh_board(board):
+    os.system('cls' if os.name == 'nt' else 'clear')
     for row in range(3):
         for cell in range(3):
             print(f"{board[row][cell]}", end="")
